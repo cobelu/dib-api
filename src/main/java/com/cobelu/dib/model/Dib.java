@@ -1,10 +1,10 @@
 package com.cobelu.dib.model;
 
-import java.time.OffsetDateTime;
-
 /*
  * Since this is an SQL-backed application, so use SQL package
  */
+import java.sql.Date;
+import java.sql.Time;
 
 import javax.persistence.Entity;
 
@@ -14,8 +14,10 @@ public class Dib extends BaseEntity {
 	/*
 	 * Fields
 	 */
-	private OffsetDateTime start; // year, month, day
-	private OffsetDateTime end;
+	private Date startDate;
+	private Time startTime;
+	private Date endDate;
+	private Time endTime;
 	private String comment;
 
 	/*
@@ -25,22 +27,32 @@ public class Dib extends BaseEntity {
 		super();
 	}
 
-	public Dib(OffsetDateTime start, OffsetDateTime end, String comment) {
+	public Dib(Date startDate, Time startTime, Date endDate, Time endTime, String comment) {
 		this();
-		this.start = start;
-		this.end = end;
+		this.startDate = startDate;
+		this.startTime = startTime;
+		this.endDate = endDate;
+		this.endTime = endTime;
 		this.comment = comment;
 	}
 	
 	/*
 	 * Getters
 	 */
-	public OffsetDateTime getStart() {
-		return start;
+	public Date getStartDate() {
+		return startDate;
 	}
 
-	public OffsetDateTime getEnd() {
-		return end;
+	public Time getStartTime() {
+		return startTime;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public Time getEndTime() {
+		return endTime;
 	}
 
 	public String getComment() {
@@ -50,14 +62,21 @@ public class Dib extends BaseEntity {
 	/*
 	 * Setters
 	 */
-	public void setStartDate(OffsetDateTime start) {
-		this.start = start;
-	}
-	
-	public void setEndDate(OffsetDateTime end) {
-		this.end = end;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 
+	public void setStartTime(Time startTime) {
+		this.startTime = startTime;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public void setEndTime(Time endTime) {
+		this.endTime = endTime;
+	}
 
 	public void setComment(String comment) {
 		this.comment = comment;
