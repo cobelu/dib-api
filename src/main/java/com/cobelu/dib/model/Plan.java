@@ -9,7 +9,7 @@ public class Plan extends BaseEntity {
 	 * Fields
 	 */
 	private String title;
-	private Long maxItems;
+	private Integer maxItems;
 	
 	/*
 	 * Constructors
@@ -18,7 +18,7 @@ public class Plan extends BaseEntity {
 		super();
 	}
 	
-	public Plan(String title, Long maxItems) {
+	public Plan(String title, Integer maxItems) {
 		this.title = title;
 		this.maxItems = maxItems;
 	}
@@ -30,7 +30,7 @@ public class Plan extends BaseEntity {
 		return title;
 	}
 
-	public Long getMaxItems() {
+	public Integer getMaxItems() {
 		return maxItems;
 	}
 	
@@ -42,7 +42,7 @@ public class Plan extends BaseEntity {
 		this.title = title;
 	}
 
-	public void setMaxItems(Long maxItems) {
+	public void setMaxItems(Integer maxItems) {
 		this.maxItems = maxItems;
 	}
 

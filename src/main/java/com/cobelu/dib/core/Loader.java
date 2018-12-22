@@ -9,8 +9,10 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import com.cobelu.dib.model.Item;
+import com.cobelu.dib.model.Plan;
 import com.cobelu.dib.model.User;
 import com.cobelu.dib.repository.ItemRepository;
+import com.cobelu.dib.repository.PlanRepository;
 import com.cobelu.dib.repository.UserRepository;
 
 /**
@@ -22,18 +24,30 @@ import com.cobelu.dib.repository.UserRepository;
 @Component
 public class Loader implements ApplicationRunner {
 
+	private final PlanRepository plans;
 	private final ItemRepository items;
 	private final UserRepository users;
 
 	@Autowired
-	public Loader(ItemRepository items, UserRepository users) {
+	public Loader(PlanRepository plans, ItemRepository items, UserRepository users) {
 		super();
+		this.plans = plans;
 		this.items = items;
 		this.users = users;
 	}
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
+		
+		/*
+		 * Populating sample data for plans
+		 */
+		List<Plan> bunchaPlans = new ArrayList<>();
+		for (int i = 0; i <= 10; i++) {
+			Plan plan = new Plan("Plan " + i, i *= 10);
+			bunchaPlans.add(plan);
+		}
+		plans.saveAll(bunchaPlans);
 		
 		/*
 		 * Populating sample data for users
