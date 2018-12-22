@@ -44,7 +44,7 @@ public class Loader implements ApplicationRunner {
 		 */
 		List<Plan> bunchaPlans = new ArrayList<>();
 		for (int i = 0; i <= 10; i++) {
-			Plan plan = new Plan("Plan " + i, i *= 10);
+			Plan plan = new Plan("Plan " + i, i * 10);
 			bunchaPlans.add(plan);
 		}
 		plans.saveAll(bunchaPlans);
