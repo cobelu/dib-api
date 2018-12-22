@@ -7,4 +7,3 @@ import com.cobelu.dib.model.Plan;
 public interface PlanRepository extends PagingAndSortingRepository<Plan, Long> {
 
 }
-
