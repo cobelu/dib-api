@@ -1,5 +1,7 @@
 package com.cobelu.dib.core;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,7 @@ import com.cobelu.dib.model.Dib;
 import com.cobelu.dib.model.Item;
 import com.cobelu.dib.model.Plan;
 import com.cobelu.dib.model.User;
+import com.cobelu.dib.repository.DibRepository;
 import com.cobelu.dib.repository.ItemRepository;
 import com.cobelu.dib.repository.PlanRepository;
 import com.cobelu.dib.repository.UserRepository;
@@ -28,13 +31,15 @@ public class Loader implements ApplicationRunner {
 	private final PlanRepository plans;
 	private final ItemRepository items;
 	private final UserRepository users;
+	private final DibRepository dibs;
 
 	@Autowired
-	public Loader(PlanRepository plans, ItemRepository items, UserRepository users) {
+	public Loader(PlanRepository plans, ItemRepository items, UserRepository users, DibRepository dibs) {
 		super();
 		this.plans = plans;
 		this.items = items;
 		this.users = users;
+		this.dibs = dibs;
 	}
 
 	@Override
@@ -78,9 +83,20 @@ public class Loader implements ApplicationRunner {
 		 * Populating sample data for dibs
 		 */
 		List<Dib> bunchaDibs = new ArrayList<>();
-		for (int i = 1; i <= 10; i++) {
-
+		int year = 2019;
+		for (int month = 1; month <= 12; month++) {
+			for (int day = 1; day <= 29; day++) {
+				Date date = Date.valueOf(year + "-" + month + "-" + day);
+				for (int hour = 9; hour <= 16; hour++) {
+					Time start = Time.valueOf(hour + ":00:00");
+					Time end = Time.valueOf((hour + 1) + ":00:00");
+					String comment = date.toString() + "/" + start.toString();
+					Dib dib = new Dib(date, start, date, end, comment);
+					bunchaDibs.add(dib);
+				}
+			}
 		}
+		dibs.saveAll(bunchaDibs);
 		
 	}
 
