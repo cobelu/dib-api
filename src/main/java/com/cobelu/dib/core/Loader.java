@@ -38,7 +38,7 @@ public class Loader implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		
+
 		/*
 		 * Populating sample data for plans
 		 */
@@ -48,7 +48,7 @@ public class Loader implements ApplicationRunner {
 			bunchaPlans.add(plan);
 		}
 		plans.saveAll(bunchaPlans);
-		
+
 		/*
 		 * Populating sample data for users
 		 */
@@ -58,7 +58,7 @@ public class Loader implements ApplicationRunner {
 			bunchaUsers.add(user);
 		}
 		users.saveAll(bunchaUsers);
-		
+
 		/*
 		 * Populating sample data for items
 		 */
@@ -72,7 +72,7 @@ public class Loader implements ApplicationRunner {
 			bunchaItems.add(item);
 		}
 		items.saveAll(bunchaItems);
-		
+
 	}
 
 }
