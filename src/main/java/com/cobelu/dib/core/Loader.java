@@ -8,6 +8,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import com.cobelu.dib.model.Dib;
 import com.cobelu.dib.model.Item;
 import com.cobelu.dib.model.Plan;
 import com.cobelu.dib.model.User;
@@ -72,7 +73,15 @@ public class Loader implements ApplicationRunner {
 			bunchaItems.add(item);
 		}
 		items.saveAll(bunchaItems);
+		
+		/*
+		 * Populating sample data for dibs
+		 */
+		List<Dib> bunchaDibs = new ArrayList<>();
+		for (int i = 1; i <= 10; i++) {
 
+		}
+		
 	}
 
 }
