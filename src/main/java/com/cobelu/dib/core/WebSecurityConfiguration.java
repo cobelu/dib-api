@@ -24,8 +24,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		 * TODO: Swap for not using H2
 		 */
 		// auth.userDetailsService(userDetailsService).passwordEncoder(User.PASSWORD_ENCODER);
-		
-		auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance()).withUser("test").password("password").roles("USER");
+
+		auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance()).withUser("test")
+				.password("password").roles("USER");
 	}
 
 	@Override

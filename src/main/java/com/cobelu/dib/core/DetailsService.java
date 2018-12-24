@@ -22,7 +22,8 @@ public class DetailsService implements UserDetailsService {
 		if (user == null) {
 			throw new UsernameNotFoundException(username + " was not found");
 		}
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), AuthorityUtils.createAuthorityList(user.getRoles()));
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
+				AuthorityUtils.createAuthorityList(user.getRoles()));
 	}
 
 }

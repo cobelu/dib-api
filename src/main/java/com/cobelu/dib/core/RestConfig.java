@@ -8,14 +8,14 @@ import org.springframework.validation.Validator;
 
 @Configuration
 public class RestConfig implements RepositoryRestConfigurer {
-	
+
 	@Autowired
 	private Validator validator;
-	
+
 	@Override
 	public void configureValidatingRepositoryEventListener(ValidatingRepositoryEventListener validatingListener) {
 		validatingListener.addValidator("beforeCreate", validator);
 		validatingListener.addValidator("beforeSave", validator);
 	}
-	
+
 }

@@ -13,10 +13,10 @@ import com.cobelu.dib.repository.UserRepository;
 @Component
 @RepositoryEventHandler
 public class ItemEventHandler {
-	
+
 	@Autowired
 	private final UserRepository users;
-	
+
 	public ItemEventHandler(UserRepository users) {
 		this.users = users;
 	}

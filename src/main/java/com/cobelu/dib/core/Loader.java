@@ -78,7 +78,7 @@ public class Loader implements ApplicationRunner {
 			bunchaItems.add(item);
 		}
 		items.saveAll(bunchaItems);
-		
+
 		/*
 		 * Populating sample data for dibs
 		 */
@@ -97,7 +97,7 @@ public class Loader implements ApplicationRunner {
 			}
 		}
 		dibs.saveAll(bunchaDibs);
-		
+
 	}
 
 }

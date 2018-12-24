@@ -4,25 +4,25 @@ import javax.persistence.Entity;
 
 @Entity
 public class Plan extends BaseEntity {
-	
+
 	/*
 	 * Fields
 	 */
 	private String title;
 	private Integer maxItems;
-	
+
 	/*
 	 * Constructors
 	 */
 	protected Plan() {
 		super();
 	}
-	
+
 	public Plan(String title, Integer maxItems) {
 		this.title = title;
 		this.maxItems = maxItems;
 	}
-	
+
 	/*
 	 * Getters
 	 */
@@ -33,7 +33,7 @@ public class Plan extends BaseEntity {
 	public Integer getMaxItems() {
 		return maxItems;
 	}
-	
+
 	/*
 	 * 
 	 * Setters

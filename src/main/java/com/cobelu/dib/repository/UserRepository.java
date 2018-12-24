@@ -12,5 +12,5 @@ import com.cobelu.dib.model.User;
 public interface UserRepository extends CrudRepository<User, Long> {
 
 	User findByUsername(String username);
-	
+
 }

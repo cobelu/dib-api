@@ -35,7 +35,7 @@ public class Dib extends BaseEntity {
 		this.endTime = endTime;
 		this.comment = comment;
 	}
-	
+
 	/*
 	 * Getters
 	 */
@@ -58,7 +58,7 @@ public class Dib extends BaseEntity {
 	public String getComment() {
 		return comment;
 	}
-	
+
 	/*
 	 * Setters
 	 */
