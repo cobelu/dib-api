@@ -3,6 +3,7 @@ package com.cobelu.dib.core;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +61,7 @@ public class Loader implements ApplicationRunner {
 		 */
 		List<User> bunchaUsers = new ArrayList<>();
 		for (int i = 1; i <= 20; i++) {
-			User user = new User("user" + i, "pswrd", "ROLE_USER");
+			User user = new User("user" + i, "pswrd", "ROLE_USER", new HashSet<Item>(), new HashSet<Item>());
 			bunchaUsers.add(user);
 		}
 		users.saveAll(bunchaUsers);

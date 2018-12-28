@@ -1,6 +1,9 @@
 package com.cobelu.dib.model;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -19,6 +22,9 @@ public class Item extends BaseEntity {
 
 	@ManyToOne
 	private User owner;
+	
+	@ManyToMany
+	private Set<User> seers;
 
 	/*
 	 * Constructors
@@ -47,6 +53,10 @@ public class Item extends BaseEntity {
 	public User getOwner() {
 		return owner;
 	}
+	
+	public Set<User> getSeers() {
+		return seers;
+	}
 
 	/*
 	 * Setters
@@ -61,6 +71,10 @@ public class Item extends BaseEntity {
 
 	public void setOwner(User owner) {
 		this.owner = owner;
+	}
+	
+	public void setSeers(Set<User> seers) {
+		this.seers = seers;
 	}
 
 	/*
