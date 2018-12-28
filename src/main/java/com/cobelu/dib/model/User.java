@@ -24,13 +24,13 @@ public class User extends BaseEntity {
 
 	@JsonIgnore
 	private String role;
-	
+
 	// One User owns many items. An Item has only one owner.
 	@OneToMany
 	private Set<Item> myItems;
-	
+
 	@ManyToMany
-	private Set<Item> visibleItems;
+	private Set<Item> sharedItems;
 
 	public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
@@ -38,11 +38,13 @@ public class User extends BaseEntity {
 		super();
 	}
 
-	public User(String username, String password, String role, Set<Item> myItems, Set<Item> visibleItems) {
+	public User(String username, String password, String role, Set<Item> myItems, Set<Item> sharedItems) {
 		this();
 		this.username = username;
-		setPassword(password);
+		setPassword(password); // NEVER expose the password. Store encrypted instead.
 		this.role = role;
+		this.myItems = myItems;
+		this.sharedItems = sharedItems;
 	}
 
 	/*
@@ -59,10 +61,14 @@ public class User extends BaseEntity {
 	public String getRoles() {
 		return role;
 	}
-	
+
 	public Set<Item> getMyItems() {
 		return myItems;
 	};
+
+	public Set<Item> getSharedItems() {
+		return sharedItems;
+	}
 
 	/*
 	 * Setters
@@ -78,9 +84,13 @@ public class User extends BaseEntity {
 	public void getRoles(String role) {
 		this.role = role;
 	}
-	
+
 	public void setMyItems(Set<Item> myItems) {
 		this.myItems = myItems;
+	}
+
+	public void setSharedItems(Set<Item> sharedItems) {
+		this.sharedItems = sharedItems;
 	}
 
 	/**
