@@ -8,11 +8,14 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@RequestMapping(value = "/login", method=RequestMethod.GET)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -34,9 +37,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		// REMOVE AND CSRF DISABLE STATEMENT WHEN DONE WITH TESTING
-		http.authorizeRequests().anyRequest().authenticated().and().formLogin().permitAll();
-//		http.authorizeRequests().anyRequest().authenticated().and().httpBasic()and().csrf().disable()
+		// TODO: REMOVE AND CSRF DISABLE STATEMENT WHEN DONE WITH TESTING
+		http.authorizeRequests().anyRequest().authenticated().and().formLogin().permitAll().and().csrf().disable();
 	}
 
 }
