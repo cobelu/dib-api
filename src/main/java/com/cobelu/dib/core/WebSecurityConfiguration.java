@@ -38,7 +38,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// TODO: REMOVE AND CSRF DISABLE STATEMENT WHEN DONE WITH TESTING
-		http.authorizeRequests().anyRequest().authenticated().and().formLogin().permitAll().and().csrf().disable();
+		http.authorizeRequests().anyRequest().authenticated().and().formLogin().permitAll().and().logout().permitAll().and().csrf().disable();
 	}
 
 }
