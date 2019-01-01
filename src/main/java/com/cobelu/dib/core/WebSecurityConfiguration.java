@@ -37,6 +37,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		/*
+		 * Login link is by default at ~/login
+		 * 
+		 * Logout link is by default at ~/logout
+		 */
 		// TODO: REMOVE AND CSRF DISABLE STATEMENT WHEN DONE WITH TESTING
 		http.authorizeRequests().anyRequest().authenticated().and().formLogin().permitAll().and().logout().permitAll().and().csrf().disable();
 	}
