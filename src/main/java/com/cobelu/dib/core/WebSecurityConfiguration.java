@@ -39,8 +39,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		/*
 		 * Use this if problems with H2 testing login
 		 */
-		auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance()).withUser("test")
-				.password("password").roles("USER");
+//		auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance()).withUser("test")
+//				.password("password").roles("USER");
 	}
 
 	@Override
@@ -52,14 +52,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		 */
 		// TODO: REMOVE AND CSRF DISABLE STATEMENT WHEN DONE WITH TESTING
 
-		http.authorizeRequests().anyRequest().authenticated().and().formLogin()
-				.successHandler(new AuthenticationSuccessHandler() {
-					@Override
-					public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-							Authentication authentication) throws IOException, ServletException {
-						// do nothing on success
-					}
-				}).permitAll().and().logout().permitAll().and().csrf().disable();
+//		http.authorizeRequests().anyRequest().authenticated().and().formLogin()
+//				.successHandler(new AuthenticationSuccessHandler() {
+//					@Override
+//					public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+//							Authentication authentication) throws IOException, ServletException {
+//						// do nothing on success
+//					}
+//				}).permitAll().and().logout().permitAll().and().csrf().disable();
 	}
 
 }
