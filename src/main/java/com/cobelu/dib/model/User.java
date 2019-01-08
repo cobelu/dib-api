@@ -29,6 +29,7 @@ public class User extends BaseEntity {
 	@OneToMany
 	private Set<Item> myItems;
 
+	// All items which are visible to the User.
 	@ManyToMany
 	private Set<Item> sharedItems;
 

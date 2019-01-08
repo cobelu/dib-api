@@ -22,7 +22,8 @@ public class Item extends BaseEntity {
 
 	@ManyToOne
 	private User owner;
-	
+
+	// All users which can see the Item.
 	@ManyToMany
 	private Set<User> sharers;
 
@@ -39,6 +40,14 @@ public class Item extends BaseEntity {
 		this.description = description;
 	}
 
+	public void addSharer(User sharer) {
+		sharers.add(sharer);
+	}
+
+	public void removeSharer(User sharer) {
+		sharers.remove(sharer);
+	}
+
 	/*
 	 * Getters
 	 */
@@ -53,7 +62,7 @@ public class Item extends BaseEntity {
 	public User getOwner() {
 		return owner;
 	}
-	
+
 	public Set<User> getSharers() {
 		return sharers;
 	}
@@ -72,7 +81,7 @@ public class Item extends BaseEntity {
 	public void setOwner(User owner) {
 		this.owner = owner;
 	}
-	
+
 	public void setSharers(Set<User> sharers) {
 		this.sharers = sharers;
 	}
