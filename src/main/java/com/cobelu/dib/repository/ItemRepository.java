@@ -26,25 +26,24 @@ public interface ItemRepository extends PagingAndSortingRepository<Item, Long> {
 	@RestResource(rel = "title-contains", path = "containsTitle")
 	Page<Item> findByTitleContaining(@Param("title") String title, Pageable page);
 
-//	@RestResource(rel = "with-owner", path = "withOwner")
-//	Page<Item> findByOwnerId(@Param("ownerId") Long ownerId, Pageable page);
+	@RestResource(rel = "with-owner", path = "withOwner")
+	Page<Item> findByOwnerId(@Param("ownerId") Long id, Pageable page);
 
 	/*
 	 * Deletion
 	 */
 
-	/*
-	 * TODO: An item can ONLY be deleted by its owner
-	 */
-//	@Override
+//	/*
+//	 * TODO: An item can ONLY be deleted by its owner
+//	 */
 //	@PreAuthorize("@itemRepository.findOne(#id)?.owner?.username == authentication.name")
 //	void delete(@Param("id") Long id);
-
-	/*
-	 * TODO: Add owner ability to cancel with "or"
-	 */
-	@Override
-	@PreAuthorize("#item.owner?.username == authentication.name")
-	void delete(@Param("item") Item entity);
+//
+//	/*
+//	 * TODO: Add owner ability to cancel with "or"
+//	 */
+//	@Override
+//	@PreAuthorize("#item.owner?.username == authentication.name")
+//	void delete(@Param("item") Item entity);
 
 }

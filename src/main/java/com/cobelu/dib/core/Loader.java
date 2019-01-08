@@ -61,7 +61,7 @@ public class Loader implements ApplicationRunner {
 		 */
 		List<User> bunchaUsers = new ArrayList<>();
 		for (int i = 1; i <= 20; i++) {
-			User user = new User("user" + i, "pswrd", "ROLE_USER", new HashSet<Item>(), new HashSet<Item>());
+			User user = new User("user" + i, "password", "ROLE_USER", new HashSet<Item>(), new HashSet<Item>());
 			bunchaUsers.add(user);
 		}
 		users.saveAll(bunchaUsers);
@@ -75,7 +75,8 @@ public class Loader implements ApplicationRunner {
 			/*
 			 * Assign a "random" user as owner
 			 */
-			item.setOwner(bunchaUsers.get((i % 5) + 1));
+			User user = bunchaUsers.get((i % 5) + 1);
+			item.setOwner(user);
 			bunchaItems.add(item);
 		}
 		items.saveAll(bunchaItems);
