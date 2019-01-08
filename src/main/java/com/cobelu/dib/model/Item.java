@@ -24,7 +24,7 @@ public class Item extends BaseEntity {
 	private User owner;
 	
 	@ManyToMany
-	private Set<User> seers;
+	private Set<User> sharers;
 
 	/*
 	 * Constructors
@@ -54,8 +54,8 @@ public class Item extends BaseEntity {
 		return owner;
 	}
 	
-	public Set<User> getSeers() {
-		return seers;
+	public Set<User> getSharers() {
+		return sharers;
 	}
 
 	/*
@@ -73,8 +73,8 @@ public class Item extends BaseEntity {
 		this.owner = owner;
 	}
 	
-	public void setSeers(Set<User> seers) {
-		this.seers = seers;
+	public void setSharers(Set<User> sharers) {
+		this.sharers = sharers;
 	}
 
 	/*

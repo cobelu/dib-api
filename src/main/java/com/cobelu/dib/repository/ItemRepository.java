@@ -19,8 +19,19 @@ import com.cobelu.dib.model.Item;
  */
 public interface ItemRepository extends PagingAndSortingRepository<Item, Long> {
 
+	/*
+	 * Creation
+	 */
+
 	@RestResource(rel = "title-contains", path = "containsTitle")
 	Page<Item> findByTitleContaining(@Param("title") String title, Pageable page);
+
+//	@RestResource(rel = "with-owner", path = "withOwner")
+//	Page<Item> findByOwnerId(@Param("ownerId") Long ownerId, Pageable page);
+
+	/*
+	 * Deletion
+	 */
 
 	/*
 	 * TODO: An item can ONLY be deleted by its owner
