@@ -1,29 +1,19 @@
 package com.cobelu.dib.core;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
 @SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-@RequestMapping(value = "/login", method = RequestMethod.GET)
+// @EnableGlobalMethodSecurity(prePostEnabled = true)
+// @RequestMapping(value = "/login", method = RequestMethod.POST)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -32,6 +22,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		/*
+		 * Discussion on REST API authentication using Spring Boot:
+		 * https://www.baeldung.com/securing-a-restful-web-service-with-spring-security
+		 */
+
+		/*
 		 * Use this when not using H2
 		 */
 //		auth.userDetailsService(userDetailsService).passwordEncoder(User.PASSWORD_ENCODER);
@@ -39,8 +34,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		/*
 		 * Use this if problems with H2 testing login
 		 */
-//		auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance()).withUser("test")
-//				.password("password").roles("USER");
+		auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance()).withUser("test")
+				.password("password").roles("USER");
 	}
 
 	@Override
@@ -60,6 +55,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 //						// do nothing on success
 //					}
 //				}).permitAll().and().logout().permitAll().and().csrf().disable();
+
+		RestAuthenticationEntryPoint restAuthenticationEntryPoint = new RestAuthenticationEntryPoint();
+		SuccessHandler successHandler = new SuccessHandler();
+		SimpleUrlAuthenticationFailureHandler failureHandler = new SimpleUrlAuthenticationFailureHandler();
+
+		http.csrf().disable().exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
+				.authorizeRequests().anyRequest().authenticated().and().formLogin().successHandler(successHandler)
+				.failureHandler(failureHandler).and().logout();
 	}
 
 }
