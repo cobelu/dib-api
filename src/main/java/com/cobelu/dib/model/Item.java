@@ -34,10 +34,12 @@ public class Item extends BaseEntity {
 		super();
 	}
 
-	public Item(String title, String description) {
+	public Item(String title, String description, User owner, Set<User> sharers) {
 		this();
 		this.title = title;
 		this.description = description;
+		this.owner = owner;
+		this.sharers = sharers;
 	}
 
 	public void addSharer(User sharer) {

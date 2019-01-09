@@ -8,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RestResource;
-import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.cobelu.dib.model.Item;
 
@@ -26,8 +25,11 @@ public interface ItemRepository extends PagingAndSortingRepository<Item, Long> {
 	@RestResource(rel = "title-contains", path = "containsTitle")
 	Page<Item> findByTitleContaining(@Param("title") String title, Pageable page);
 
-	@RestResource(rel = "with-owner", path = "withOwner")
+	@RestResource(rel = "with-owner-id", path = "withOwnerId")
 	Page<Item> findByOwnerId(@Param("ownerId") Long id, Pageable page);
+
+	@RestResource(rel = "with-owner-username", path = "withOwnerUsername")
+	Page<Item> findByOwnerUsername(@Param("ownerUsername") String username, Pageable page);
 
 	/*
 	 * Deletion

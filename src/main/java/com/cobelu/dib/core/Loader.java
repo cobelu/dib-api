@@ -5,6 +5,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -47,6 +48,12 @@ public class Loader implements ApplicationRunner {
 	public void run(ApplicationArguments args) throws Exception {
 
 		/*
+		 * Modulo math sucks. It's better to use a PRNG with a seed.
+		 */
+		Random random = new Random();
+		random.setSeed(123);
+
+		/*
 		 * Populating sample data for plans
 		 */
 		List<Plan> bunchaPlans = new ArrayList<>();
@@ -54,7 +61,6 @@ public class Loader implements ApplicationRunner {
 			Plan plan = new Plan("Plan " + i, i * 10);
 			bunchaPlans.add(plan);
 		}
-		plans.saveAll(bunchaPlans);
 
 		/*
 		 * Populating sample data for users
@@ -64,22 +70,32 @@ public class Loader implements ApplicationRunner {
 			User user = new User("user" + i, "password", "ROLE_USER", new HashSet<Item>(), new HashSet<Item>());
 			bunchaUsers.add(user);
 		}
-		users.saveAll(bunchaUsers);
 
 		/*
 		 * Populating sample data for items
 		 */
 		List<Item> bunchaItems = new ArrayList<>();
 		for (int i = 1; i <= 100; i++) {
-			Item item = new Item("Item" + i, "This is Item " + i);
+			Item item = new Item("Item" + i, "This is Item " + i, null, new HashSet<User>());
 			/*
 			 * Assign a "random" user as owner
 			 */
-			User user = bunchaUsers.get((i % 5) + 1);
+			User user = bunchaUsers.get(random.nextInt(20));
 			item.setOwner(user);
 			bunchaItems.add(item);
 		}
-		items.saveAll(bunchaItems);
+
+		/*
+		 * Creating some sharers
+		 */
+		for (int i = 0; i < 100; i++) {
+			// Go through every Item
+			Item item = bunchaItems.get(i);
+			// Pick about 5 random Users to share
+			for (int u = 0; u < 5; u++) {
+				item.addSharer(bunchaUsers.get(random.nextInt(20)));
+			}
+		}
 
 		/*
 		 * Populating sample data for dibs
@@ -98,6 +114,13 @@ public class Loader implements ApplicationRunner {
 				}
 			}
 		}
+
+		/*
+		 * Finished! SAVE EVERYTHING NOW THAT ALL RELATIONSHIPS HAVE BEEN ESTABLISHED!
+		 */
+		plans.saveAll(bunchaPlans);
+		users.saveAll(bunchaUsers);
+		items.saveAll(bunchaItems);
 		dibs.saveAll(bunchaDibs);
 
 	}
