@@ -6,9 +6,9 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
-@SuppressWarnings("deprecation")
+import com.cobelu.dib.model.User;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -21,13 +21,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		/*
 		 * Use this when not using H2
 		 */
-//		auth.userDetailsService(userDetailsService).passwordEncoder(User.PASSWORD_ENCODER);
+		auth.userDetailsService(userDetailsService).passwordEncoder(User.PASSWORD_ENCODER);
 
 		/*
 		 * Use this if problems with H2 testing login
 		 */
-		auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance()).withUser("test")
-				.password("password").roles("USER");
+//		auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance()).withUser("test")
+//				.password("password").roles("USER");
 	}
 
 	@Override

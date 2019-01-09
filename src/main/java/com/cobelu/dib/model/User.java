@@ -35,7 +35,11 @@ public class User extends BaseEntity {
 	@ManyToMany
 	private Set<Item> sharedItems;
 
-	public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
+	/*
+	 * The default value is 10. We'll use 11 because... well... our password encoder
+	 * goes to 11.
+	 */
+	public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder(11);
 
 	protected User() {
 		super();
