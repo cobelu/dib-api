@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -27,6 +28,9 @@ public class Item extends BaseEntity {
 	@ManyToMany
 	private Set<User> sharers;
 
+	@OneToMany
+	private Set<Dib> dibs;
+	
 	/*
 	 * Constructors
 	 */
@@ -34,12 +38,13 @@ public class Item extends BaseEntity {
 		super();
 	}
 
-	public Item(String title, String description, User owner, Set<User> sharers) {
+	public Item(String title, String description, User owner, Set<User> sharers, Set<Dib> dibs) {
 		this();
 		this.title = title;
 		this.description = description;
 		this.owner = owner;
 		this.sharers = sharers;
+		this.dibs = dibs;
 	}
 
 	public void addSharer(User sharer) {
@@ -68,6 +73,10 @@ public class Item extends BaseEntity {
 	public Set<User> getSharers() {
 		return sharers;
 	}
+	
+	public Set<Dib> getDibs() {
+		return dibs;
+	}
 
 	/*
 	 * Setters
@@ -86,6 +95,10 @@ public class Item extends BaseEntity {
 
 	public void setSharers(Set<User> sharers) {
 		this.sharers = sharers;
+	}
+	
+	public void setDibs(Set<Dib> dibs) {
+		this.dibs = dibs;
 	}
 
 	/*

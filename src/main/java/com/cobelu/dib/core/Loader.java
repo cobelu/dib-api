@@ -67,7 +67,7 @@ public class Loader implements ApplicationRunner {
 		 */
 		List<User> bunchaUsers = new ArrayList<>();
 		for (int i = 1; i <= 20; i++) {
-			User user = new User("user" + i, "password", "ROLE_USER", new HashSet<Item>(), new HashSet<Item>());
+			User user = new User("user" + i, "password", "ROLE_USER", new HashSet<Item>(), new HashSet<Item>(), new HashSet<Dib>());
 			bunchaUsers.add(user);
 		}
 
@@ -76,7 +76,7 @@ public class Loader implements ApplicationRunner {
 		 */
 		List<Item> bunchaItems = new ArrayList<>();
 		for (int i = 1; i <= 100; i++) {
-			Item item = new Item("Item" + i, "This is Item " + i, null, new HashSet<User>());
+			Item item = new Item("Item" + i, "This is Item " + i, null, new HashSet<User>(), new HashSet<Dib>());
 			/*
 			 * Assign a "random" user as owner
 			 */
@@ -109,7 +109,14 @@ public class Loader implements ApplicationRunner {
 					Time start = Time.valueOf(hour + ":00:00");
 					Time end = Time.valueOf((hour + 1) + ":00:00");
 					String comment = date.toString() + "/" + start.toString();
-					Dib dib = new Dib(date, start, date, end, comment);
+					Dib dib = new Dib();
+					dib.setStartDate(date);
+					dib.setStartTime(start);
+					dib.setEndDate(date);
+					dib.setEndTime(end);
+					dib.setComment(comment);
+					dib.setItem(bunchaItems.get(random.nextInt(bunchaItems.size() - 1)));
+					dib.setUser(bunchaUsers.get(random.nextInt(bunchaUsers.size() - 1)));
 					bunchaDibs.add(dib);
 				}
 			}

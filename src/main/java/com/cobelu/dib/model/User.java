@@ -34,6 +34,10 @@ public class User extends BaseEntity {
 	@JsonIgnore
 	@ManyToMany
 	private Set<Item> sharedItems;
+	
+	@JsonIgnore
+	@OneToMany
+	private Set<Dib> myDibs;
 
 	/*
 	 * The default value is 10. We'll use 11 because... well... our password encoder
@@ -45,13 +49,14 @@ public class User extends BaseEntity {
 		super();
 	}
 
-	public User(String username, String password, String role, Set<Item> myItems, Set<Item> sharedItems) {
+	public User(String username, String password, String role, Set<Item> myItems, Set<Item> sharedItems, Set<Dib> myDibs) {
 		this();
 		this.username = username;
 		setPassword(password); // NEVER expose the password. Store encrypted instead.
 		this.role = role;
 		this.myItems = myItems;
 		this.sharedItems = sharedItems;
+		this.myDibs = myDibs;
 	}
 
 	/*
@@ -76,6 +81,10 @@ public class User extends BaseEntity {
 	public Set<Item> getSharedItems() {
 		return sharedItems;
 	}
+	
+	public Set<Dib> getMyDibs() {
+		return myDibs;
+	}
 
 	/*
 	 * Setters
@@ -98,6 +107,10 @@ public class User extends BaseEntity {
 
 	public void setSharedItems(Set<Item> sharedItems) {
 		this.sharedItems = sharedItems;
+	}
+	
+	public void setMyDibs(Set<Dib> myDibs) {
+		this.myDibs = myDibs;
 	}
 
 	/**
