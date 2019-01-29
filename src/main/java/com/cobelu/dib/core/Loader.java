@@ -109,14 +109,9 @@ public class Loader implements ApplicationRunner {
 					Time start = Time.valueOf(hour + ":00:00");
 					Time end = Time.valueOf((hour + 1) + ":00:00");
 					String comment = date.toString() + "/" + start.toString();
-					Dib dib = new Dib();
-					dib.setStartDate(date);
-					dib.setStartTime(start);
-					dib.setEndDate(date);
-					dib.setEndTime(end);
-					dib.setComment(comment);
-					dib.setItem(bunchaItems.get(random.nextInt(bunchaItems.size() - 1)));
-					dib.setUser(bunchaUsers.get(random.nextInt(bunchaUsers.size() - 1)));
+					Item selectedItem = bunchaItems.get(random.nextInt(bunchaItems.size() - 1));
+					User selectedUser = bunchaUsers.get(random.nextInt(bunchaUsers.size() - 1));
+					Dib dib = new Dib(date, start, date, end, comment, selectedItem, selectedUser);
 					bunchaDibs.add(dib);
 				}
 			}

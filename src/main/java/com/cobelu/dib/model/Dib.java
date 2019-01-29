@@ -32,15 +32,17 @@ public class Dib extends BaseEntity {
 	private String comment;
 	
 	@ManyToOne
+	@NotNull
 	private Item item;
 
 	@ManyToOne
+	@NotNull
 	private User user;
 
 	/*
 	 * Constructors
 	 */
-	public Dib() {
+	protected Dib() {
 		super();
 	}
 
