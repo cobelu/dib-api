@@ -1,5 +1,6 @@
 package com.cobelu.dib.model;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -26,7 +27,7 @@ public class Item extends BaseEntity {
 
 	// All users which can see the Item.
 	@ManyToMany
-	private Set<User> sharers;
+	private List<User> sharers;
 
 	@OneToMany
 	private Set<Dib> dibs;
@@ -38,7 +39,7 @@ public class Item extends BaseEntity {
 		super();
 	}
 
-	public Item(String title, String description, User owner, Set<User> sharers, Set<Dib> dibs) {
+	public Item(String title, String description, User owner, List<User> sharers, Set<Dib> dibs) {
 		this();
 		this.title = title;
 		this.description = description;
@@ -70,7 +71,7 @@ public class Item extends BaseEntity {
 		return owner;
 	}
 
-	public Set<User> getSharers() {
+	public List<User> getSharers() {
 		return sharers;
 	}
 	
@@ -93,7 +94,7 @@ public class Item extends BaseEntity {
 		this.owner = owner;
 	}
 
-	public void setSharers(Set<User> sharers) {
+	public void setSharers(List<User> sharers) {
 		this.sharers = sharers;
 	}
 	

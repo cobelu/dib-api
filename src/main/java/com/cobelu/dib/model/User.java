@@ -26,16 +26,13 @@ public class User extends BaseEntity {
 	private String role;
 
 	// One User owns many items. An Item has only one owner.
-	@JsonIgnore
 	@OneToMany
 	private Set<Item> myItems;
 
 	// All items which are visible to the User.
-	@JsonIgnore
 	@ManyToMany
 	private Set<Item> sharedItems;
 	
-	@JsonIgnore
 	@OneToMany
 	private Set<Dib> myDibs;
 
