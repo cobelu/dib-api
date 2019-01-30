@@ -27,6 +27,9 @@ public interface ItemRepository extends PagingAndSortingRepository<Item, Long> {
 
 	@RestResource(rel = "with-owner-username", path = "withOwnerUsername")
 	Page<Item> findByOwner_Username(@Param("ownerUsername") String username, Pageable page);
+	
+	@RestResource(rel = "with-sharers-username", path = "withSharersUsername")
+	Page<Item> findBySharers_Username(@Param("sharerUsername") String username, Pageable page);
 
 	/*
 	 * Deletion
