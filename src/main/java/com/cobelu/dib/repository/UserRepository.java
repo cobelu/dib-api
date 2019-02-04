@@ -11,7 +11,7 @@ import com.cobelu.dib.model.User;
  * 
  * @author cobelu
  */
-@RepositoryRestResource(exported = false)
+//@RepositoryRestResource(exported = false) // Need ability to add items to collections 
 public interface UserRepository extends CrudRepository<User, Long> {
 
 	User findByUsername(String username);
